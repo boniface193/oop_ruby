@@ -10,8 +10,8 @@
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
-  - [Install](#install)
 - [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
@@ -58,6 +58,14 @@ ruby
 
 To get a local copy up and running, follow these steps.
 
+make sure to have git installed
+
+clone from github by running this code on you command line
+
+git clone https://github.com/boniface193/oop_ruby.git
+
+navigate to the directory by doing cd oop_ruby
+
 ### Prerequisites
 
 In order to run this project you need:
@@ -73,7 +81,7 @@ Example command:
 
 ### Setup
 
-Clone this repository to your desired folder:
+you might also need linter to check for syntax error but is not necessary
 
 <!--
 Example commands:
@@ -84,18 +92,6 @@ Example commands:
 ```
 --->
 
-### Install
-
-Install this project with: git clone https://github.com/boniface193/oop_ruby.git
-
-<!--
-Example command:
-
-```sh
-  cd my-project
-  gem install
-```
---->
 
 <!-- AUTHORS -->
 
@@ -109,6 +105,16 @@ Ikechukwu
 - LinkedIn: [boniface-ikechukwu](https://www.linkedin.com/in/boniface-ikechukwu/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+  ## 🔭 Future Features <a name="future-features"></a>
+
+  - [ ] @label instance variable, should be initialized in the constructor.
+
+  - [ ] Setter and getter for @label (remember about attr_accessor).
+  - [ ] Setters and getters for instance variables (remember about attr_accessor).
+
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- CONTRIBUTING -->
