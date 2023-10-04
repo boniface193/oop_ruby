@@ -1,4 +1,6 @@
-class Person
+require_relative 'nameable'
+
+class Person < Namebale
   attr_reader :id, :name, :age
 
   def initialize(age, name = 'unknown', parent_permission: true)
