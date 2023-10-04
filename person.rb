@@ -5,7 +5,7 @@ class Person < Namebale
   attr_reader :id, :name, :age
 
   def initialize(age, name = 'unknown', parent_permission: true)
-    super
+    super()
     @id = Random.rand(1..1000)
     @name = name
     @age = age

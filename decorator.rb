@@ -2,7 +2,7 @@ require_relative 'nameable'
 
 class Decorator < Namebale
   def initialize(nameable)
-    super
+    super()
     @nameable = nameable
   end
 
