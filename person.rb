@@ -57,18 +57,17 @@ class Classroom
 end
 
 class Student
-  attr_accessor :name
-  attr_accessor :classroom
+  attr_accessor :name, :classroom
 
   def initialize(name)
     @name = name
     @classroom = nil
   end
 
-  def classroom=(classroom)
-    @classroom&.students&.delete(self) if @classroom
+  def classrooms=(classroom)
+    @classroom&.students&.delete(self)
     @classroom = classroom
-    classroom&.students << self
+    classroom.students << self
   end
 end
 
@@ -96,26 +95,6 @@ class Rental
     person.rentals << self
   end
 end
-
-classroom = Classroom.new("Class A")
-student1 = Student.new("Alice")
-student2 = Student.new("Bob")
-
-classroom.add_student(student1)
-classroom.add_student(student2)
-
-book1 = Book.new("Book 1", "Author 1")
-book2 = Book.new("Book 2", "Author 2")
-
-person1 = Person.new("Person 1")
-person2 = Person.new("Person 2")
-
-rental1 = Rental.new("2023-09-29", book1, person1)
-rental2 = Rental.new("2023-09-30", book1, person2)
-rental3 = Rental.new("2023-10-01", book2, person2)
-
-puts "Students in Classroom #{classroom.label}: #{classroom.students.map(&:name).join(', ')}"
-puts "Rentals for #{person1.name}: #{person1.rentals.map { |r| "#{r.book.title} (#{r.date})" }.join(', ')}"
 
 person = Person.new(22, 'maximilianus')
 puts person.correct_name
