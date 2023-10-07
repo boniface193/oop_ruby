@@ -25,6 +25,10 @@ class Person < Namebale
     @name
   end
 
+  def create_persons(name)
+    @name = name
+  end
+
   private
 
   def of_age?
@@ -91,17 +95,22 @@ class Book
 end
 
 class Rental
-  attr_accessor :date
-  attr_reader :book, :person
+  attr_accessor :date, :book, :person
 
   def initialize(date, book, person)
     @date = date
     @book = book
     @person = person
-
-    book.rentals << self
-    person.rentals << self
   end
+
+  def create_rental(date, book, person)
+    @date = date
+    @book = book
+    @person = person
+  end
+
+    # book.add_rentals << self
+    # person.add_rentals << self 
 end
 
 person = Person.new(22, 'maximilianus')

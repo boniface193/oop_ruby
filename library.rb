@@ -1,7 +1,7 @@
 require_relative 'person'
 
 class Library
-  attr_reader :books, :rental, :people
+  attr_reader :books, :rentals, :people
 
   def initialize
     @books = []
@@ -17,13 +17,13 @@ class Library
 
   def create_person(name)
     person = Person.new(name)
-    people << person
+    people << person.create_persons(name)
     person
   end
 
   def create_rental(date, book, person)
     rental = Rental.new(date, book, person)
-    rentals << rental
+    rentals << rental.create_rental(date, book, person)
     rental
   end
 end
