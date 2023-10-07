@@ -108,9 +108,6 @@ class Rental
     @book = book
     @person = person
   end
-
-    # book.add_rentals << self
-    # person.add_rentals << self 
 end
 
 person = Person.new(22, 'maximilianus')

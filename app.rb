@@ -20,7 +20,7 @@ class ConsoleApp
     name = gets.chomp
     person = @library.create_person({ name: name })
     person.name.each do |key, value|
-      puts "Created person #{value}"
+      puts "Created person #{key} as #{value}"
     end
   end
 
@@ -40,40 +40,36 @@ class ConsoleApp
     person_name = gets.chomp
     print 'Enter book title: '
     book_title = gets.chomp
-    
-    person = @library.people.select { |key, value| key[:name] == person_name }
+
+    person = @library.people.select { |key| key[:name] == person_name }
 
     person2 = person.find { |p| p[:name] == person_name }
-    puts "get some issues here #{person2}"
 
     if person.nil?
-      puts "Person not found."
+      puts 'Person not found.'
       return
     end
 
     book = @library.books.find { |b| b.title == book_title }
 
     if book.nil?
-      puts "Book not found."
+      puts 'Book not found.'
       return
     end
     rental = @library.create_rental(date, book, person)
     puts "Created rental: #{rental.date} - #{book.title} by #{person2[:name]}"
-
   end
 
   def list_rentals_for_person
     print 'Enter person\'s name: '
     person_name = gets.chomp
 
-    person = @library.people.select { |key, value| key[:name] == person_name }
+    person = @library.people.select { |key| key[:name] == person_name }
 
     person2 = person.find { |p| p[:name] == person_name }
 
     if person2
-      puts "Rentals for #{person2[:name]}:"
-      rentals = @library.rentals.select { |r| r.person == person }
-      rentals.each { |rental| puts "#{rental.date} - #{rental.book.title}" }
+      puts "Rentals for #{person2[:name]} is available"
     else
       puts 'Person not found.'
     end
