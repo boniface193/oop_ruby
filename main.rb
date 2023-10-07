@@ -39,6 +39,7 @@ class Main
     puts '5. - Create a rental'
     puts '6. - List rentals for a person'
     puts '7. - Quit'
+  end
 
   def handle_menu_option(choice)
     menu_options = {

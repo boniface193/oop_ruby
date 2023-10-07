@@ -12,7 +12,7 @@ class ConsoleApp
 
   def all_people
     puts 'List of People:'
-    @library.people.select { |key| puts "#{key[:name]}"}
+    @library.people.select { |key| puts key[:name] }
   end
 
   def add_person
