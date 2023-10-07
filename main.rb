@@ -5,6 +5,30 @@ class Main
     @console = ConsoleApp.new
   end
 
+  def all_books
+    @console.all_books
+  end
+
+  def all_people
+    @console.all_people
+  end
+
+  def add_person
+    @console.add_person
+  end
+
+  def add_book
+    @console.add_book
+  end
+
+  def add_rental
+    @console.add_rental
+  end
+
+  def list_rentals_for_person
+    @console.list_rentals_for_person
+  end
+
   def main
     puts '\nLibrary Menu:'
     puts '1. List all books'
@@ -17,24 +41,19 @@ class Main
   end
 
   def handle_menu_option(choice)
-    case choice
-    when 1
-      @console.all_books
-    when 2
-      @console.all_people
-    when 3
-      @console.add_person
-    when 4
-      @console.add_book
-    when 5
-      @console.add_rental
-    when 6
-      @console.list_rentals_for_person
-    when 7
-      quit
-    else
-      invalid_option
-    end
+    menu_options = {
+      1 => :all_books,
+      2 => :all_people,
+      3 => :add_person,
+      4 => :add_book,
+      5 => :add_rental,
+      6 => :list_rentals_for_person,
+      7 => :quit
+    }
+
+    action = menu_options[choice]
+    send(action) if action
+    invalid_option unless action
   end
 
   def quit
@@ -58,4 +77,5 @@ class Main
   end
 end
 
-main
+deploy = Main.new
+deploy.run
