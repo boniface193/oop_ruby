@@ -15,6 +15,17 @@ class ConsoleApp
     @library.people.select { |key| puts key[:name] }
   end
 
+  def student_teacher
+    print 'Do you want to create a student (1)  or a teacher (2):'
+    name = gets.chomp
+
+    if name.to_i > 2
+      puts 'invalid option'
+    else
+      add_person
+    end
+  end
+
   def add_person
     print 'Enter person\'s name: '
     name = gets.chomp

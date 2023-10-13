@@ -13,6 +13,10 @@ class Main
     @console.all_people
   end
 
+  def student_teacher
+    @console.student_teacher
+  end
+
   def add_person
     @console.add_person
   end
@@ -45,7 +49,7 @@ class Main
     menu_options = {
       1 => :all_books,
       2 => :all_people,
-      3 => :add_person,
+      3 => :student_teacher,
       4 => :add_book,
       5 => :add_rental,
       6 => :list_rentals_for_person,
