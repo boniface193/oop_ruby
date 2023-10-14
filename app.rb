@@ -1,88 +1,103 @@
-require_relative 'library'
+require_relative 'student'
+require_relative 'teacher'
+require_relative 'book'
+require_relative 'rentals'
 
 class ConsoleApp
+  attr_reader :books, :rentals, :people
+
   def initialize
-    @library = Library.new
+    @books = []
+    @rentals = []
+    @people = []
   end
 
   def all_books
-    puts 'List of Books:'
-    @library.books.each { |book| puts "#{book.title} by #{book.author}" }
+    @books.each do |book|
+      puts "Title: \"#{book.title}\", Author: #{book.author}"
+    end
   end
 
   def all_people
-    puts 'List of People:'
-    @library.people.select { |key| puts key[:name] }
+    @people.each do |person|
+      if person.is_a?(Student)
+        puts "[Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      elsif person.is_a?(Teacher)
+        puts "[Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      end
+    end
   end
 
   def student_teacher
-    print 'Do you want to create a student (1)  or a teacher (2):'
+    print 'Do you want to create a student (1)  or a teacher (2): '
+    person_type = gets.chomp.to_i
+
+    print 'Age? '
+    age = gets.chomp.to_i
+
+    print 'Name? '
     name = gets.chomp
 
-    if name.to_i > 2
-      puts 'invalid option'
+    if person_type.to_i == 2
+      print 'Specialization? '
+      specialization = gets.chomp
+      unless specialization.length < 2
+        @people << Teacher.new(age, name, specialization: specialization)
+      end
     else
-      add_person
+      print 'Has parent permission? [Y/N]: '
+      parent_permission = gets.chomp.downcase == 'y'
+      @people << Student.new(age, name, parent_permission: parent_permission)
     end
-  end
 
-  def add_person
-    print 'Enter person\'s name: '
-    name = gets.chomp
-    person = @library.create_person({ name: name })
-    person.name.each do |key, value|
-      puts "Created person #{key} as #{value}"
-    end
+    puts 'Person created successfully'
   end
 
   def add_book
-    print 'Enter book title: '
+    print 'Title: '
     title = gets.chomp
-    print 'Enter book author: '
+    print 'Author: '
     author = gets.chomp
-    book = @library.create_book(title, author)
-    puts "Created book: #{book.title} by #{book.author}"
+
+    @books << Book.new(title, author)
+
+    puts "\nBook created successfully"
   end
 
   def add_rental
-    print 'Enter rental date (YYYY-MM-DD): '
+    puts 'Select a book from the following list by number:'
+    @books.each_with_index do |book, index|
+      puts "#{index}) Title: \"#{book.title}\", Author: #{book.author}"
+    end
+    book_index = gets.chomp.to_i
+
+    puts "\nSelect a person from the following list by number (not id):"
+
+    @people.each_with_index do |person, index|
+      if person.is_a?(Student)
+        puts "#{index}) [Student] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      elsif person.is_a?(Teacher)
+        puts "#{index}) [Teacher] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+      end
+    end
+    person_index = gets.chomp.to_i
+
+    print "\nDate: "
     date = gets.chomp
-    print 'Enter person\'s name: '
-    person_name = gets.chomp
-    print 'Enter book title: '
-    book_title = gets.chomp
 
-    person = @library.people.select { |key| key[:name] == person_name }
-
-    person2 = person.find { |p| p[:name] == person_name }
-
-    if person.nil?
-      puts 'Person not found.'
-      return
-    end
-
-    book = @library.books.find { |b| b.title == book_title }
-
-    if book.nil?
-      puts 'Book not found.'
-      return
-    end
-    rental = @library.create_rental(date, book, person)
-    puts "Created rental: #{rental.date} - #{book.title} by #{person2[:name]}"
+    @rentals << Rental.new(date, @books[book_index], @people[person_index])
+    puts 'Rental created successfully'
   end
 
   def list_rentals_for_person
-    print 'Enter person\'s name: '
-    person_name = gets.chomp
+    print 'ID of person: '
+    person_id = gets.chomp.to_i
 
-    person = @library.people.select { |key| key[:name] == person_name }
-
-    person2 = person.find { |p| p[:name] == person_name }
-
-    if person2
-      puts "Rentals for #{person2[:name]} is available"
-    else
-      puts 'Person not found.'
+    puts 'Rentals:'
+    @rentals.each do |rental|
+      if rental.person.id == person_id
+        puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+      end
     end
   end
 end

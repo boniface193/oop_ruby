@@ -1,4 +1,7 @@
-require_relative 'person'
+require_relative 'student'
+require_relative 'teacher'
+require_relative 'book'
+require_relative 'rentals'
 
 class Library
   attr_reader :books, :rentals, :people
@@ -19,6 +22,7 @@ class Library
     person = Person.new(name)
     people << person.create_persons(name)
     person
+    puts people
   end
 
   def create_rental(date, book, person)
