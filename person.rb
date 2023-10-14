@@ -34,4 +34,3 @@ class Person < Namebale
     @age >= 18
   end
 end
-
