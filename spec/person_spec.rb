@@ -1,9 +1,9 @@
 require 'rspec'
-require_relative '../person'  # Make sure to require the Person class
+require_relative '../person' # Make sure to require the Person class
 
 describe Person do
-  let(:person) { Person.new(20, "John", parent_permission: true) }
-  let(:book) { double("Book") }  # You can use a double for the Book object
+  let(:person) { Person.new(20, 'John', parent_permission: true) }
+  let(:book) { double('Book') } # You can use a double for the Book object
 
   describe '#initiliaze' do
     it 'to create a new person' do
@@ -20,7 +20,7 @@ describe Person do
 
   describe '#correct_name' do
     it 'return the correct name' do
-      expect(person.correct_name()).to eq('John')
+      expect(person.correct_name).to eq('John')
     end
   end
 
@@ -30,6 +30,5 @@ describe Person do
         expect(person.can_use_services?).to be(true)
       end
     end
-
   end
 end

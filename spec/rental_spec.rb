@@ -19,7 +19,7 @@ describe Rental do
     it 'adds the rental to the person' do
       # Ensure that the person double is correctly set up to handle the rentals array
       allow(person).to receive(:rentals).and_return([])
-      
+
       rental = Rental.new(rental_date, book, person)
       expect(person.rentals).to include(rental)
     end

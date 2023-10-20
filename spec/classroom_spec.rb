@@ -2,7 +2,7 @@ require 'rspec'
 require_relative '../classroom'
 
 describe Classroom do
-  let(:classroom) { Classroom.new("Room A") }
+  let(:classroom) { Classroom.new('Room A') }
 
   describe '#Initialize' do
     it 'should create a new classroom' do
@@ -11,7 +11,7 @@ describe Classroom do
 
     it 'sets the classroom for the student' do
       classroom = Classroom.new('Room B')
-      student = double("Student", classroom: nil, :classroom==> nil)
+      student = double('Student', classroom: nil, :classroom= => nil)
 
       classroom.add_student(student)
 
