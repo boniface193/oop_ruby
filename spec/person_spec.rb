@@ -12,6 +12,24 @@ describe Person do
     end
   end
 
+  describe '#create_persons' do
+    it 'should set the name attribute' do
+      new_name = 'John'
+      person.create_persons(new_name)
+      expect(person.instance_variable_get(:@name)).to eq(new_name)
+    end
+  end
+
+  describe 'private #of_age?' do
+    let(:aage) { Person.new(17, 'John', parent_permission: true) }
+
+    it 'should return false if the person is under 18' do
+      # person = Person.new(age: 17)  # Create a person instance with age 17
+      result = aage.send(:of_age?)  # Use send to access the private method
+      expect(result).to be(false)
+    end
+  end
+
   describe '#add_rentals' do
     it 'initialize an empty rental array' do
       expect(person.rentals).to be_empty
