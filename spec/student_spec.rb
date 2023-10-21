@@ -31,13 +31,12 @@ describe Student do
 
   describe '#classrooms=' do
     it 'should not add the student to the classroom if already assigned' do
-      student = Student.new('John', 18)  # Provide required arguments for initialization
+      student = Student.new('John', 18)
       classroom = Classroom.new('Math Class')
 
       student.classrooms = classroom
       initial_students_count = classroom.students.count
 
-      # Assign the same classroom again
       student.classrooms = classroom
 
       expect(classroom.students.count).to eq(initial_students_count)
