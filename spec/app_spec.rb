@@ -36,4 +36,29 @@ describe ConsoleApp do
       expect { app.add_book }.to output(/Book created successfully/).to_stdout
     end
   end
+
+  describe '#add_rental' do
+    it 'should add a rental' do
+      book = Book.new('Book 1', 'Author 1')
+      student = Student.new(20, 'Student 1', parent_permission: true)
+      app.books << book
+      app.people << student
+
+      allow(app).to receive(:gets).and_return('0', '0', '2022-09-15')
+
+      expect { app.add_rental }.to output(/Rental created successfully/).to_stdout
+      expect(app.rentals).to include(an_instance_of(Rental))
+    end
+  end
+
+  describe '#list_rentals_for_person' do
+    it 'should handle no rentals found for a person' do
+      # Prepare to capture output
+      allow_any_instance_of(Object).to receive(:gets).and_return('2') # Assuming the person ID is 2
+      expected_output = "ID of person: Rentals:\n"
+
+      # Use the `expect` block to test the output
+      expect { app.list_rentals_for_person }.to output(expected_output).to_stdout
+    end
+  end
 end
