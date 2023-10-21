@@ -24,8 +24,7 @@ describe Person do
     let(:aage) { Person.new(17, 'John', parent_permission: true) }
 
     it 'should return false if the person is under 18' do
-      # person = Person.new(age: 17)  # Create a person instance with age 17
-      result = aage.send(:of_age?)  # Use send to access the private method
+      result = aage.send(:of_age?)
       expect(result).to be(false)
     end
   end
