@@ -104,6 +104,11 @@ Ikechukwu
 - Twitter: [@bidtechnologies](https://twitter.com/bidtechnologies)
 - LinkedIn: [boniface-ikechukwu](https://www.linkedin.com/in/boniface-ikechukwu/)
 
+👤 **Evans Karanja**
+- GitHub: [@githubhandle](https://github.com/prg-04)
+- Twitter: [@twitterhandle](https://twitter.com/Evans1425Sean)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/evanson-karanja/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
